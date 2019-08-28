@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Psychic Game</title>
+</head>
+
+<body>
+
+    <!-- HTML Content -->
+    <h3 id="displayText">Enter any Key to start!</h3>
+    <p>Wins: <span id="wins"></span></p>
+    <p>Losses: <span id="losses"></span></p>
+    <p>Guesses Left: <span id="guessesLeft"></p>
+    <p>Guesses So Far: <span id=lettersGuessed></span></p>
+
+    <script>
+
+        // Create variables
+        var wins = 0;
+        var losses = 0;
+        var guessesLeft = 9;
+        var lettersGuessed = [];
+        var userGuess;
+        var computerGuess;
+        var computerChoices = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l",
+            "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
+        var displayText = "This is a test";
+
+        // Create a function to display the results to the page
+        function updateDisplay() {
+            document.querySelector("#displayText").innerHTML = displayText;
+            document.querySelector("#wins").innerHTML = wins;
+            document.querySelector("#losses").innerHTML = losses;
+            document.querySelector("#guessesLeft").innerHTML = guessesLeft;
+            document.querySelector("#lettersGuessed").innerHTML = lettersGuessed;
+        };
+
+        updateDisplay()
+
+        // Function that generates a random computer guess
+        function computerRandom() {
+            computerGuess = computerChoices[Math.floor(Math.random() * computerChoices.length)];        
+            }
+
+        // Function that resets the guessesLeft and guessesSoFar whenever the score changes
+        function reset() {
+            guessesLeft = 9;
+            lettersGuessed = [];
+        }
+
+        computerRandom();
+        console.log(computerGuess);
+
+        // Create an onkeyup event function to grab userGuess 
+        document.onkeyup = function (event) {
+
+            userGuess = event.key;
+
+            //If you guess correctly, wins is incremented and we call the reset function
+            if (userGuess === computerGuess) {
+                wins++;
+                reset();
+            }
+
+            else {
+                guessesLeft--;
+                //push userGuess into lettersGuessed
+            }
+
+            //if (guessesLeft = 0) {
+              //  losses++;
+            //}
+
+            updateDisplay();
+        }
+    </script>
+</body>
+
+</html>
