@@ -14,13 +14,18 @@
 <body>
 
     <!-- HTML Content -->
+
     <div class="container">
+        <h1>A Simple Pychic Number Game</h1>
         <h3 id="displayText">Press any Letter Key to start!</h3>
         <p>Wins: <span id="wins"></span></p>
         <p>Losses: <span id="losses"></span></p>
         <p>Guesses Left: <span id="guessesLeft"></p>
         <p>Guesses So Far: <span id=lettersGuessed></span></p>
     </div>
+
+    <!-- JavaScript -->
+
     <script>
 
         // Create variables
@@ -60,6 +65,7 @@
         console.log(computerGuess);
 
         // Create an onkeyup event function to grab userGuess 
+        //I'd like to get this to ignore my initial "command + r" press, but am not sure how!
         document.onkeyup = function (event) {
             document.querySelector("#displayText").innerHTML = displayText;
             userGuess = event.key;
@@ -74,19 +80,22 @@
 
             }
 
+            //Otherwise, your amount of guesses left decreases by one, and the key you pressed
+            //is shown on the screen
             else {
                 guessesLeft--;
                 lettersGuessed.push(userGuess);
                 document.querySelector("#lettersGuessed").innerHTML = lettersGuessed;
+                
+                //If your number of guesses reaches zero, you lose and the counter resets
                 if (guessesLeft === 0) {
                     losses++;
+                    //This displays an apologetic message to you for losing so badly
                     displayText = "Too bad!";
                     document.querySelector("#displayText").innerHTML = displayText; 
                     reset();
                 }
             }
-
-
 
             updateDisplay();
         }
