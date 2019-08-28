@@ -11,7 +11,7 @@
 <body>
 
     <!-- HTML Content -->
-    <h3 id="displayText">Enter any Key to start!</h3>
+    <h3 id="displayText">Press any Letter Key to start!</h3>
     <p>Wins: <span id="wins"></span></p>
     <p>Losses: <span id="losses"></span></p>
     <p>Guesses Left: <span id="guessesLeft"></p>
@@ -28,11 +28,10 @@
         var computerGuess;
         var computerChoices = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l",
             "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
-        var displayText = "This is a test";
+        var displayText = "Good Luck!";
 
         // Create a function to display the results to the page
         function updateDisplay() {
-            document.querySelector("#displayText").innerHTML = displayText;
             document.querySelector("#wins").innerHTML = wins;
             document.querySelector("#losses").innerHTML = losses;
             document.querySelector("#guessesLeft").innerHTML = guessesLeft;
@@ -57,23 +56,27 @@
 
         // Create an onkeyup event function to grab userGuess 
         document.onkeyup = function (event) {
-
+            document.querySelector("#displayText").innerHTML = displayText;
             userGuess = event.key;
 
             //If you guess correctly, wins is incremented and we call the reset function
             if (userGuess === computerGuess) {
                 wins++;
                 reset();
+                
             }
-
+            
             else {
-                guessesLeft--;
-                //push userGuess into lettersGuessed
+               guessesLeft--;
+               lettersGuessed.push(userGuess);
+                document.querySelector("#lettersGuessed").innerHTML = lettersGuessed;
+                if (guessesLeft === 0) {
+                    losses++;
+                    reset();
+            }
             }
 
-            //if (guessesLeft = 0) {
-              //  losses++;
-            //}
+             
 
             updateDisplay();
         }
