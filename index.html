@@ -6,17 +6,21 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Psychic Game</title>
+    <link href="https://fonts.googleapis.com/css?family=Gayathri&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/style.css">
+
 </head>
 
 <body>
 
     <!-- HTML Content -->
-    <h3 id="displayText">Press any Letter Key to start!</h3>
-    <p>Wins: <span id="wins"></span></p>
-    <p>Losses: <span id="losses"></span></p>
-    <p>Guesses Left: <span id="guessesLeft"></p>
-    <p>Guesses So Far: <span id=lettersGuessed></span></p>
-
+    <div class="container">
+        <h3 id="displayText">Press any Letter Key to start!</h3>
+        <p>Wins: <span id="wins"></span></p>
+        <p>Losses: <span id="losses"></span></p>
+        <p>Guesses Left: <span id="guessesLeft"></p>
+        <p>Guesses So Far: <span id=lettersGuessed></span></p>
+    </div>
     <script>
 
         // Create variables
@@ -42,13 +46,14 @@
 
         // Function that generates a random computer guess
         function computerRandom() {
-            computerGuess = computerChoices[Math.floor(Math.random() * computerChoices.length)];        
-            }
+            computerGuess = computerChoices[Math.floor(Math.random() * computerChoices.length)];
+        }
 
         // Function that resets the guessesLeft and guessesSoFar whenever the score changes
         function reset() {
             guessesLeft = 9;
             lettersGuessed = [];
+            displayText = "Good Luck!"
         }
 
         computerRandom();
@@ -62,21 +67,26 @@
             //If you guess correctly, wins is incremented and we call the reset function
             if (userGuess === computerGuess) {
                 wins++;
+                displayText = "Good Job!";
+                //tells the user "Good Job!" if they guess correctly
+                document.querySelector("#displayText").innerHTML = displayText; 
                 reset();
-                
+
             }
-            
+
             else {
-               guessesLeft--;
-               lettersGuessed.push(userGuess);
+                guessesLeft--;
+                lettersGuessed.push(userGuess);
                 document.querySelector("#lettersGuessed").innerHTML = lettersGuessed;
                 if (guessesLeft === 0) {
                     losses++;
+                    displayText = "Too bad!";
+                    document.querySelector("#displayText").innerHTML = displayText; 
                     reset();
-            }
+                }
             }
 
-             
+
 
             updateDisplay();
         }
