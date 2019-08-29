@@ -16,7 +16,7 @@
     <!-- HTML Content -->
 
     <div class="container">
-        <h1>A Simple Pychic Number Game</h1>
+        <h1>A Simple Pychic Letter Game</h1>
         <h3 id="displayText">Press any Letter Key to start!</h3>
         <p>Wins: <span id="wins"></span></p>
         <p>Losses: <span id="losses"></span></p>
@@ -47,7 +47,7 @@
             document.querySelector("#lettersGuessed").innerHTML = lettersGuessed;
         };
 
-        updateDisplay()
+        updateDisplay();
 
         // Function that generates a random computer guess
         function computerRandom() {
@@ -75,7 +75,7 @@
                 wins++;
                 displayText = "Good Job!";
                 //tells the user "Good Job!" if they guess correctly
-                document.querySelector("#displayText").innerHTML = displayText; 
+                document.querySelector("#displayText").innerHTML = displayText;
                 reset();
 
             }
@@ -86,13 +86,13 @@
                 guessesLeft--;
                 lettersGuessed.push(userGuess);
                 document.querySelector("#lettersGuessed").innerHTML = lettersGuessed;
-                
+
                 //If your number of guesses reaches zero, you lose and the counter resets
                 if (guessesLeft === 0) {
                     losses++;
                     //This displays an apologetic message to you for losing so badly
                     displayText = "Too bad!";
-                    document.querySelector("#displayText").innerHTML = displayText; 
+                    document.querySelector("#displayText").innerHTML = displayText;
                     reset();
                 }
             }
